@@ -18,11 +18,6 @@ function Login() {
     { name: 'Client', email: 'client@site.com', password: 'password@123' }
   ]
 
-  function handleUserChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const user = event.target.value
-    setValues(JSON.parse(user))
-  }
-
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
 
@@ -54,47 +49,49 @@ function Login() {
   }, [])
 
   return (
-    <div>
-      <form noValidate onSubmit={handleSubmit}>
-        <select name="select-user" onChange={handleUserChange}>
-          <option value="" style={{ display: 'none' }}>
-            Select an user to test
-          </option>
-          {users.map((user) => (
-            <option key={user.email} value={JSON.stringify(user)}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            value={values.email}
-            type="email"
-            name="email"
-            id="email"
-            disabled={loginRequestStatus === 'loading'}
-            onChange={handleChange}
-          />
+    <div className="container">
+      <div className="box">
+        <div className="left">
+          <div className="welcome">
+            <h3>LMF | Light Finance.</h3>
+            <p>Login to access the LMF Digital tools.</p>
+          </div>
         </div>
+        <div className="right">
+          <form noValidate onSubmit={handleSubmit}>
+            <h3 className="title">Login</h3>
+            <div className="form-container">
+              <input
+                value={values.email}
+                type="text"
+                name="email"
+                id="email"
+                disabled={loginRequestStatus === 'loading'}
+                onChange={handleChange}
+                placeholder="User Email"
+              />
+              <input
+                value={values.password}
+                type="password"
+                name="password"
+                id="password"
+                disabled={loginRequestStatus === 'loading'}
+                onChange={handleChange}
+                placeholder="Password"
+              />
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            value={values.password}
-            type="password"
-            name="password"
-            id="password"
-            disabled={loginRequestStatus === 'loading'}
-            onChange={handleChange}
-          />
+              <div className="login-btn">
+                <button
+                  type="submit"
+                  disabled={loginRequestStatus === 'loading'}
+                >
+                  {loginRequestStatus === 'loading' ? 'Loading...' : 'Submit'}
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-
-        <button type="submit" disabled={loginRequestStatus === 'loading'}>
-          {loginRequestStatus === 'loading' ? 'Loading...' : 'Submit'}
-        </button>
-      </form>
+      </div>
     </div>
   )
 }
