@@ -9,13 +9,17 @@ function NavBar() {
 
   return (
     <div>
-      <ul>
-        <li>
-          <Link to={LOGIN_PATH}>Login</Link>
-        </li>
-        <li>
-          <Link to={REGISTER_PATH}>Register</Link>
-        </li>
+      {/* <ul>
+        {!isAuthenticated && (
+          <>
+            <li>
+              <Link to={LOGIN_PATH}>Login</Link>
+            </li>
+            <li>
+              <Link to={REGISTER_PATH}>Register</Link>
+            </li>
+          </>
+        )}
         <li>
           <Link to={ROOT_PATH}>Home</Link>
         </li>
@@ -31,14 +35,14 @@ function NavBar() {
             <Link to={METRICS_PATH}>Metrics</Link>
           </li>
         </CanAccess>
-      </ul>
+      </ul> */}
 
-      {isAuthenticated && (
+      {/* {isAuthenticated && (
         <>
           <span style={{ marginRight: 4 }}>{user?.email}</span>
           <button onClick={signOut}>Logout</button>
         </>
-      )}
+      )} */}
     </div>
   )
 }
